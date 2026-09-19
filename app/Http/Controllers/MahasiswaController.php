@@ -9,7 +9,7 @@ class MahasiswaController extends Controller
     //
     public function index()
     {
-        $mahasiswa = {
+        $mahasiswa = [
             'nim' => '251011700585',
             'nama' => 'Siti Jilan Azzahra',
             'prodi' => 'Sistem Informasi',
@@ -17,7 +17,7 @@ class MahasiswaController extends Controller
             'kampus' => 'Universitas Pamulang',
             'status' => 'Aktif',
 
-        };
+        ];
 
         return view('mahasiswa', compact('mahasiswa'));
     }
