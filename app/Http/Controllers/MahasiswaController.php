@@ -13,7 +13,7 @@ class MahasiswaController extends Controller
             'nim' => '251011700585',
             'nama' => 'Siti Jilan Azzahra',
             'prodi' => 'Sistem Informasi',
-            'email' => 'sjilann3@gmail.com',
+            'email' => 'sitijilan0610@gmail.com',
             'kampus' => 'Universitas Pamulang',
             'status' => 'Aktif',
 
