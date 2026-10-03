@@ -14,7 +14,7 @@ class ProjectSeeder extends Seeder
     public function run(): void
     {
         //
-$projects = [
+            $projects = [
             [
                 'title' => 'Sistem Informasi Akademik',
                 'description' => 'Aplikasi berbasis web untuk mengelola data mahasiswa, jadwal kuliah, dan nilai perkuliahan.',
