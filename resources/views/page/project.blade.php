@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Project')
+@section('title','project')
 
 @section('content')
 <div class="container flex-grow-1">
@@ -32,6 +32,7 @@
         @endforeach
     </div>
     <div class="d-flex justify-content-center mt-5">
-        {{ $projects->links('pagination::bootstrap-5') }}
     </div>
 </div>
+
+@endsection
