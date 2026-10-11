@@ -8,7 +8,7 @@
                 <div class="card shadow-sm border-0">
                     <div class="card-header bg-white text-center py-4">
                         <div class="d-flex justify-content-center mb-3">
-                            <img src="{{ asset('pohon.jpg') }}" alt="Foto Profil" class="rounded-circle img-thumbnail" style="width: 120px; height: 120px; object-fit: cover;">
+                            <img src="{{ asset('pohon.jpeg') }}" alt="Foto Profil" class="rounded-circle img-thumbnail" style="width: 120px; height: 120px; object-fit: cover;">
                         </div>
                         <h5 class="card-title mb-4">Profile Mahasiswa</h5>
                         <span class="badge bg-success">{{ $mahasiswa['status'] }}</span>
