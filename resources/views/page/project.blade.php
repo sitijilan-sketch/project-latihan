@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','project')
+@section('title','Project')
 
 @section('content')
 <div class="container flex-grow-1">
@@ -19,19 +19,19 @@
                 <div class="card-body">
                     <h5 class="card-title mb-4">{{ $project->title }}</h5>
                     <span class="badge bg-success">{{ $project->status }}</span>
+                    <div class="mb-3">
+                        @if (strtolower($project->status) === 'active')
+                        <span class="badge bg-success">Active</span>
+                        @elseif (strtolower($project->status) === 'archived')
+                        <span class="badge bg-secondary">Archived</span>
+                        @else
+                        <span class="badge bg-secondary">{{ $project->status }}</span>
+                        @endif
+                    </div>
                     <p class="card-text">{{ Str::limit($project->description,50) }}</p>
                 </div>
                 <div class="card-footer bg-white border-0 pb-3">
-                    <div class="mb-2">
-                        <small>Tech : {{ $project->teknologi }}</small>
-                    </div>
-                    <a href="{{ route('project.show', $project->id) }}" class="btn btn-primary w-100">Detail Project</a>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
-    <div class="d-flex justify-content-center mt-5">
+@@ -35,5 +44,3 @@
         {{ $projects->links('pagination::bootstrap-5') }}
     </div>
 </div>

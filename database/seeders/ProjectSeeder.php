@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Project;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Project;
 
 class ProjectSeeder extends Seeder
 {
@@ -13,81 +13,94 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-            $projects = [
+        $projects = [
             [
                 'title' => 'Sistem Informasi Akademik',
+                'kategori' => 'Sistem Informasi',
                 'description' => 'Aplikasi berbasis web untuk mengelola data mahasiswa, jadwal kuliah, dan nilai perkuliahan.',
                 'teknologi' => 'Laravel & Bootstrap',
                 'image' => 'project1.jpg',
-                'status' => 'Selesai',
+                'status' => 'active',
             ],
             [
                 'title' => 'E-Commerce SEO Optimization',
+                'kategori' => 'E-Commerce',
                 'description' => 'Aplikasi optimalisasi struktur heading dan indexing halaman web toko online.',
                 'teknologi' => 'PHP & Google Search Console',
                 'image' => 'project2.jpg',
-                'status' => 'In Progress',
+                'status' => 'archived',
             ],
             [
                 'title' => 'Aplikasi Manajemen Proyek',
+                'kategori' => 'Manajemen',
                 'description' => 'Aplikasi untuk mengelola proyek, tugas, dan kolaborasi tim secara efisien.',
                 'teknologi' => 'Laravel & React',
                 'image' => 'project3.jpg',
-                'status' => 'Selesai',
+                'status' => 'active',
             ],
             [
                 'title' => 'Sistem Informasi Perpustakaan',
+                'kategori' => 'Sistem Informasi',
                 'description' => 'Aplikasi untuk mengelola data buku, peminjaman, dan pengembalian di perpustakaan.',
                 'teknologi' => 'Laravel & Vue.js',
                 'image' => 'project4.jpg',
-                'status' => 'In Progress',
+                'status' => 'archived',
             ],
             [
                 'title' => 'Aplikasi Pemesanan Makanan Online',
+                'kategori' => 'E-Commerce',
                 'description' => 'Aplikasi untuk memesan makanan secara online dengan fitur pembayaran digital.',
                 'teknologi' => 'Laravel & React Native',
                 'image' => 'project5.jpg',
-                'status' => 'Selesai',
+                'status' => 'active',
             ],
             [
                 'title' => 'Sistem Informasi Kepegawaian',
+                'kategori' => 'Sistem Informasi',
                 'description' => 'Aplikasi untuk mengelola data pegawai, absensi, dan cuti secara digital.',
                 'teknologi' => 'Laravel & Bootstrap',
                 'image' => 'project6.jpg',
-                'status' => 'In Progress',
+                'status' => 'archived',
             ],
             [
                 'title' => 'Aplikasi Manajemen Inventaris',
+                'kategori' => 'Manajemen',
                 'description' => 'Aplikasi untuk mengelola stok barang, pemesanan, dan laporan inventaris.',
                 'teknologi' => 'Laravel & Vue.js',
                 'image' => 'project7.jpg',
-                'status' => 'Selesai',
+                'status' => 'active',
             ],
             [
                 'title' => 'Sistem Informasi Penjualan',
+                'kategori' => 'E-Commerce',
                 'description' => 'Aplikasi untuk mengelola data penjualan, pelanggan, dan laporan penjualan.',
                 'teknologi' => 'Laravel & React',
                 'image' => 'project8.jpg',
-                'status' => 'In Progress',
+                'status' => 'archived',
             ],
             [
                 'title' => 'Aplikasi Pemesanan Tiket Online',
+                'kategori' => 'E-Commerce',
                 'description' => 'Aplikasi untuk memesan tiket transportasi secara online dengan fitur pembayaran digital.',
                 'teknologi' => 'Laravel & React Native',
                 'image' => 'project9.jpg',
-                'status' => 'Selesai',
+                'status' => 'active',
             ],
             [
                 'title' => 'Sistem Informasi Akademik Mobile',
+                'kategori' => 'Sistem Informasi',
                 'description' => 'Aplikasi mobile untuk mengakses data akademik mahasiswa secara real-time.',
                 'teknologi' => 'Flutter & Firebase',
                 'image' => 'project10.jpg',
-                'status' => 'In Progress',
-            ],            
-        ];  
+                'status' => 'archived',
+            ],
+        ];
+
         foreach ($projects as $project) {
-            Project::create($project);
+            Project::updateOrCreate(
+                ['title' => $project['title']],
+                $project
+            );
         }
     }
 }
