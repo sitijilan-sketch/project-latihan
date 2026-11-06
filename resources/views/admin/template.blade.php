@@ -55,22 +55,20 @@
 </head>
 <body>
 
-    <!-- Navbar Kuning -->
+    <!-- Navbar Admin -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-warning px-3 py-2 border-bottom">
         <div class="container-fluid">
-            <!-- Brand Logo UNPAM + Teks -->
-            <a class="navbar-brand text-dark fw-bold d-flex align-items-center" href="#">
-                <img src="{{ asset('images/logo-unpam.png') }}" alt="Logo" height="36" class="me-2" onerror="this.style.display='none'">
+            <a class="navbar-brand text-dark fw-bold d-flex align-items-center" href="{{ route('home') }}" title="Kembali ke Web Profile">
+                <img src="{{ asset('images/logo_unpam.jpg') }}" alt="Logo" height="36" class="me-2" onerror="this.style.display='none'">
                 <div>
                     <div style="font-size: 10px; line-height: 1.1; letter-spacing: 0.5px; font-weight: 700;">UNIVERSITAS PAMULANG</div>
                     <div style="font-size: 14px; font-weight: 800; line-height: 1.1;">SISTEM INFORMASI</div>
                 </div>
             </a>
 
-            <!-- Right Menu -->
             <div class="ms-auto d-flex align-items-center">
-                <a href="{{ route('admin.dashboard') }}" class="text-dark me-3 text-decoration-none" style="font-size: 14px;">Dashboard</a>
-                <a href="{{ route('logout') }}" class="text-dark text-decoration-none" style="font-size: 14px;">Logout</a>
+                <a href="{{ route('admin.dashboard') }}" class="text-dark me-3 text-decoration-none fw-semibold" style="font-size: 14px;">Dashboard</a>
+                <a href="{{ route('home') }}" class="text-dark text-decoration-none fw-semibold" style="font-size: 14px;">Logout</a>
             </div>
         </div>
     </nav>
