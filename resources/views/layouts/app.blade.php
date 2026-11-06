@@ -42,7 +42,7 @@
                         <a class="nav-link text-white {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('admin.dashboard') }}">Admin</a>
+                        <a class="nav-link text-white {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">Admin</a>
                     </li>
                 </ul>
             </div>

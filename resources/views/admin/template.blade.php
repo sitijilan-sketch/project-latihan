@@ -1,105 +1,110 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Web Profile</title>
-
-    <!-- Bootstrap 5 CSS -->
-    <link href="{{ asset('bootstrap-5.3.8-dist/css/bootstrap.css') }}" rel="stylesheet">
-
-    <!-- DataTables Bootstrap 5 CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-
-    <style>
-        body {
-            min-height: 100vh;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            background-color: #f8f9fa;
-        }
-        .admin-wrapper {
-            display: flex;
-            flex: 1;
-        }
-        .admin-sidebar {
-            width: 210px;
-            background-color: #2b3035;
-            min-height: 100vh;
-        }
-        .admin-sidebar .nav-link {
-            color: #ffffff;
-            opacity: 0.85;
-            padding: 6px 0;
-        }
-        .admin-sidebar .nav-link:hover {
-            opacity: 1;
-        }
-        .main-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            flex-grow: 1;
-            padding: 2rem;
-            background-color: #ffffff;
-        }
-        .footer-text {
-            color: #6c757d;
-            font-size: 0.875rem;
-            text-align: center;
-            margin-top: auto;
-            padding-top: 2rem;
-        }
-    </style>
+    <title>@yield('title', 'Admin Web Profile')</title>
+    <link href="{{ asset('bootstrap-5.3.8-dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.8/css/dataTables.dataTables.css">
 </head>
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .sidebar {
+        width: 200px;
+        min-height: 100vh;
+        background-color: #343a40;
+        position: fixed;
+        top: 56px;
+    }
+
+    .sidebar a {
+        display: block;
+        color: #fff;
+        padding: 10px 15px;
+        text-decoration: none;
+    }
+
+    .sidebar a:hover {
+        background-color: #495057;
+            text-decoration: none;
+    }
+
+    .sidebar a:hover {
+        background-color: #495057;
+    }
+
+    .content {
+        margin-top: 70px;
+        margin-left: 250px;
+        padding: 20px;
+    }
+
+    .card {
+        border: 0;
+        border-radius: 10px;
+    }
+</style>
+
 <body>
 
-    <!-- Navbar Admin -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-warning px-3 py-2 border-bottom">
-        <div class="container-fluid">
-            <a class="navbar-brand text-dark fw-bold d-flex align-items-center" href="{{ route('home') }}" title="Kembali ke Web Profile">
-                <img src="{{ asset('images/logo_unpam.jpg') }}" alt="Logo" height="36" class="me-2" onerror="this.style.display='none'">
-                <div>
-                    <div style="font-size: 10px; line-height: 1.1; letter-spacing: 0.5px; font-weight: 700;">UNIVERSITAS PAMULANG</div>
-                    <div style="font-size: 14px; font-weight: 800; line-height: 1.1;">SISTEM INFORMASI</div>
-                </div>
-            </a>
-
-            <div class="ms-auto d-flex align-items-center">
-                <a href="{{ route('admin.dashboard') }}" class="text-dark me-3 text-decoration-none fw-semibold" style="font-size: 14px;">Dashboard</a>
-                <a href="{{ route('home') }}" class="text-dark text-decoration-none fw-semibold" style="font-size: 14px;">Logout</a>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-warning fixed-top shadow-sm px-3">
+        <!-- <div class="container"> -->
+        <a class="navbar-brand d-flex align-items-center" href="{{ route('admin.dashboard') }}">
+            <img src="{{ asset('images/logo_unpam.jpg') }}" alt="Logo" height="45" class="me-2">
+            <div class="d-flex flex-column text-white" style="line-height: 1.2;">
+                <span class="fw-bold" style="font-size: 1rem;">UNIVERSITAS PAMULANG</span>
+                <span style="font-size: 0.8rem;">Sistem Informasi</span>
             </div>
-        </div>
-    </nav>
-
-    <!-- Content Wrapper -->
-    <div class="admin-wrapper">
-        <!-- Sidebar Admin -->
-        <div class="admin-sidebar p-3 text-white">
-            <h6 class="text-white-50 fw-bold mb-3" style="font-size: 13px;">Admin Menu</h6>
-            <ul class="nav flex-column" style="font-size: 14px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a href="{{ route('admin.dashboard') }}" class="nav-link">Dashboard</a>
+                    <a class="nav-link dropdown-toggle" href="{{ route('home') }}">Dashboard</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('projects.index') }}" class="nav-link">Data Project</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ Auth::user()->name }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li class="dropdown-item-text text-muted">
+                            <small>{{ Auth::user()->email }}</small>
+                        </li>
+                        <li>
+                            <form method="POST" action="{{ route('admin.logout') }}">
+                                @csrf
+                                <button type="submit" class="dropdown-item">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
+    </nav>
 
-        <!-- Main Content Area + Footer -->
-        <main class="main-container">
-            <div>
-                @yield('content')
-            </div>
-
-            <!-- Footer -->
-            <div class="footer-text">
-                &copy; 2026 MyProfile. All rights reserved.
-            </div>
-        </main>
+    <div class="sidebar shadow-sm">
+        <h5 class="text-center text-white py-3">Admin Menu</h5>
+        <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+        <a href="{{ route('projects.index') }}">Data Project</a>
     </div>
+
+    <div class="content p-3 d-flex flex-column">
+        <div class="flex-grow-1">
+            @yield('content')
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white text-dark text-center border-toppy-3 mt-5">
+        <p>&copy; 2026 MyProfile. All rights reserved.</p>
+    </footer>
 
     <!-- Scripts -->
     <script src="{{ asset('bootstrap-5.3.8-dist/js/bootstrap.bundle.js') }}"></script>
